@@ -3,33 +3,2528 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button Effect</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>Mini CodePen-like Editor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 30vh;
+            gap: 2rem;
+            flex-wrap: wrap;
+            background: linear-gradient(145deg,
+                    #F0D670 20%,
+                    #000 40%,
+                    #BB891A 70.86%);
+        }
+
+        .ui-wrapper {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+            margin-bottom: 25px;
+            padding: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 30vw;
+
+        }
+
+        .ui-preview {
+            border: 1px solid #ddd;
+            height: 210px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        iframe.live-preview {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .show-code-btn {
+            margin: 10px 0;
+            padding: 6px 12px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .code-section {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .tab-btn {
+            padding: 5px 12px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background: #eee;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: #333;
+            color: #fff;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            font-family: monospace;
+            font-size: 14px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        .run-code-btn {
+            margin-top: 10px;
+            padding: 6px 12px;
+            background: #0077cc;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
-<body class="flex-center">
-    <button class="btn flex-center btn1">Button1</button>
-    <button class="btn flex-center btn2">Button2</button>
-    <button class="btn flex-center btn3">Button3</button>
-    <button class="btn flex-center btn4">Button4</button>
-    <button class="btn flex-center btn5">Button5</button>
-    <button class="btn flex-center btn6">Button6</button>
-    <button class="btn flex-center btn7">Button7</button>
-    <button class="btn flex-center btn8">Button8</button>
-    <button class="btn flex-center btn9">Button9</button>
-    <button class="btn flex-center btn10">Button10</button>
-    <button class="btn flex-center btn11">Button11</button>
-    <button class="btn flex-center btn12">Button12</button>
-    <button class="btn flex-center btn13">Button13</button>
-    <button class="btn flex-center btn14">Button14</button>
-    <button class="btn flex-center btn15">Button15</button>
-    <button class="btn flex-center btn16">Button16</button>
-    <button class="btn flex-center btn17">Button17</button>
-    <button class="btn flex-center btn18">Button18</button>
-    <button class="btn flex-center btn19">Button19</button>
-    <button class="btn flex-center btn20">Button20</button>
+<body>
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+    <div class="ran_button_container">
+        <button class="ran_btn">
+            <span>PLAY NOW</span>
+        </button>
+    </div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+        .ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+.ran_btn {
+ border: none;
+ position: relative;
+ width: 200px;
+ height: 73px;
+ padding: 0;
+ z-index: 2;
+ -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+ mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+ -webkit-mask-size: 100%;
+ cursor: pointer;
+ background-color: transparent;
+ transform: translateY(8px);
+ margin-top:10%;
+}
+
+.ran_btn:after {
+ content: '';
+ position: absolute;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ box-shadow: 0px 0 0 0 white;
+ transition: all 2s ease;
+}
+
+.ran_btn:hover:after {
+ box-shadow: 0px -13px 56px 12px #ffffffa6;
+}
+
+.ran_btn span {
+ position: absolute;
+ width: 100%;
+ font-size: 15px;
+ font-weight: 100;
+ left: 50%;
+ top: 39%;
+ letter-spacing: 3px;
+ text-align: center;
+ transform: translate(-50%,-50%);
+ color: black;
+ transition: all 2s ease;
+}
+
+.ran_btn:hover span {
+ color: white;
+}
+
+.ran_btn:before {
+ content: '';
+ position: absolute;
+ width: 0;
+ height: 100%;
+ background-color: black;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ transition: all 1s ease;
+}
+
+.ran_btn:hover:before {
+ width: 100%;
+}
+
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">    
+<div class="ran_button">
+<div class="ran_button_wrapper">
+  <div class="text">Download</div>
+    <span class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"></path></svg>
+    </span>
+  </div>
+</div>
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+.ran_button {
+  --width: 120px;
+  --height: 55px;
+  --tooltip-height: 35px;
+  --tooltip-width: 90px;
+  --gap-between-tooltip-to-button: 18px;
+  --button-color: linear-gradient(180deg, #F0D670 0%, #BB891A 70.86%);;
+  --tooltip-color: #fff;
+  width: var(--width);
+  height: var(--height);
+  background: var(--button-color);
+  position: relative;
+  text-align: center;
+  border-radius: 0.45em;
+  font-family: "Arial";
+  transition: background 0.3s;
+  margin-top:15%;
+}
+.ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+}
+
+.ran_button::before {
+  position: absolute;
+  content: attr(data-tooltip);
+  width: var(--tooltip-width);
+  height: var(--tooltip-height);
+  background-color: var(--tooltip-color);
+  font-size: 0.9rem;
+  color: #111;
+  border-radius: .25em;
+  line-height: var(--tooltip-height);
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
+  left: calc(50% - var(--tooltip-width) / 2);
+}
+
+.ran_button::after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: var(--tooltip-color);
+  left: calc(50% - 10px);
+  bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
+}
+
+.ran_button::after,.button::before {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ran_button_wrapper,.text,.icon {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  color: #000;
+}
+
+.text {
+  top: 0
+}
+
+.text,.icon {
+  transition: top 0.5s;
+}
+
+.icon {
+  color: #fff;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ran_button:hover {
+  background: #000;
+}
+
+.ran_button:hover .text {
+  top: -100%;
+}
+
+.ran_button:hover .icon {
+  top: 0;
+}
+
+.ran_button:hover:before,.ran_button:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ran_button:hover:after {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+}
+
+.ran_button:hover:before {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+<div class="ran_buttons">
+  <button class="main-button">
+  <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M15.75 5.125a3.125 3.125 0 1 1 .754 2.035l-8.397 3.9a3.124 3.124 0 0 1 0 1.88l8.397 3.9a3.125 3.125 0 1 1-.61 1.095l-8.397-3.9a3.125 3.125 0 1 1 0-4.07l8.397-3.9a3.125 3.125 0 0 1-.144-.94Z"></path>
+  </svg>
+</button>
+<button class="discord-button button" style="transition-delay: 0s, 0s, 0s; transition-property: translate, background, box-shadow;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="30" width="30">
+     <path d="M18.654 6.368a15.87 15.87 0 0 0-3.908-1.213.06.06 0 0 0-.062.03c-.17.3-.357.693-.487 1a14.628 14.628 0 0 0-4.39 0 9.911 9.911 0 0 0-.494-1 .061.061 0 0 0-.063-.03c-1.35.233-2.664.64-3.908 1.213a.05.05 0 0 0-.025.022c-2.49 3.719-3.172 7.346-2.837 10.928a.068.068 0 0 0 .025.045 15.936 15.936 0 0 0 4.794 2.424.06.06 0 0 0 .067-.023c.37-.504.699-1.036.982-1.595a.06.06 0 0 0-.034-.084 10.65 10.65 0 0 1-1.497-.714.06.06 0 0 1-.024-.08.06.06 0 0 1 .018-.022c.1-.075.201-.155.297-.234a.06.06 0 0 1 .061-.008c3.143 1.435 6.545 1.435 9.65 0a.062.062 0 0 1 .033-.005.061.061 0 0 1 .03.013c.096.08.197.159.298.234a.06.06 0 0 1 .016.081.062.062 0 0 1-.021.021c-.479.28-.98.518-1.499.713a.06.06 0 0 0-.032.085c.288.558.618 1.09.98 1.595a.06.06 0 0 0 .067.023 15.885 15.885 0 0 0 4.802-2.424.06.06 0 0 0 .025-.045c.4-4.14-.671-7.738-2.84-10.927a.04.04 0 0 0-.024-.023Zm-9.837 8.769c-.947 0-1.726-.87-1.726-1.935 0-1.066.765-1.935 1.726-1.935.968 0 1.74.876 1.726 1.935 0 1.066-.765 1.935-1.726 1.935Zm6.38 0c-.946 0-1.726-.87-1.726-1.935 0-1.066.764-1.935 1.725-1.935.969 0 1.741.876 1.726 1.935 0 1.066-.757 1.935-1.726 1.935Z"></path>
+  </svg>
+</button>
+<button class="twitter-button button" style="transition-delay: 0.1s, 0s, 0.1s; transition-property: translate, background, box-shadow;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="30" width="30">
+     <path d="M8.432 19.8c7.245 0 11.209-6.005 11.209-11.202 0-.168 0-.338-.007-.506A8.023 8.023 0 0 0 21.6 6.049a7.99 7.99 0 0 1-2.266.622 3.961 3.961 0 0 0 1.736-2.18 7.84 7.84 0 0 1-2.505.951 3.943 3.943 0 0 0-6.715 3.593A11.19 11.19 0 0 1 3.73 4.92a3.947 3.947 0 0 0 1.222 5.259 3.989 3.989 0 0 1-1.784-.49v.054a3.946 3.946 0 0 0 3.159 3.862 3.964 3.964 0 0 1-1.775.069 3.939 3.939 0 0 0 3.68 2.733 7.907 7.907 0 0 1-4.896 1.688 7.585 7.585 0 0 1-.936-.054A11.213 11.213 0 0 0 8.432 19.8Z"></path>
+  </svg>
+</button>
+<button class="reddit-button button" style="transition-delay: 0.2s, 0s, 0.2s; transition-property: translate, background, box-shadow;">
+  <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M9.708 12a1.039 1.039 0 0 0-1.037 1.037c0 .574.465 1.05 1.037 1.04a1.04 1.04 0 0 0 0-2.077Zm2.304 4.559c.394 0 1.754-.048 2.47-.764a.29.29 0 0 0 0-.383.266.266 0 0 0-.382 0c-.442.454-1.408.61-2.088.61-.681 0-1.635-.156-2.089-.61a.266.266 0 0 0-.382 0 .266.266 0 0 0 0 .383c.705.704 2.065.763 2.471.763Zm1.24-3.509a1.04 1.04 0 0 0 1.039 1.037c.572 0 1.037-.476 1.037-1.037a1.039 1.039 0 0 0-2.075 0Z"></path>
+     <path d="M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Zm-4.785-1.456c-.394 0-.753.155-1.015.406-1.001-.716-2.375-1.181-3.901-1.241l.667-3.127 2.173.466a1.038 1.038 0 1 0 1.037-1.087 1.037 1.037 0 0 0-.93.585l-2.422-.512a.254.254 0 0 0-.264.106.232.232 0 0 0-.035.096l-.74 3.485c-1.55.048-2.947.513-3.963 1.24a1.466 1.466 0 0 0-1.927-.082 1.454 1.454 0 0 0 .318 2.457 2.542 2.542 0 0 0-.037.441c0 2.244 2.614 4.07 5.836 4.07 3.222 0 5.835-1.813 5.835-4.07a2.73 2.73 0 0 0-.036-.44c.502-.227.86-.74.86-1.337 0-.813-.656-1.456-1.456-1.456Z"></path>
+</svg>
+</button>
+<button class="messenger-button button" style="transition-delay: 0.3s, 0s, 0.3s; transition-property: translate, background, box-shadow;">
+  <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M2 11.7C2 6.126 6.366 2 12 2s10 4.126 10 9.7c0 5.574-4.366 9.7-10 9.7-1.012 0-1.982-.134-2.895-.384a.799.799 0 0 0-.534.038l-1.985.877a.8.8 0 0 1-1.122-.707l-.055-1.779a.799.799 0 0 0-.269-.57C3.195 17.135 2 14.615 2 11.7Zm6.932-1.824-2.937 4.66c-.281.448.268.952.689.633l3.156-2.395a.6.6 0 0 1 .723-.003l2.336 1.753a1.501 1.501 0 0 0 2.169-.4l2.937-4.66c.283-.448-.267-.952-.689-.633l-3.156 2.395a.6.6 0 0 1-.723.003l-2.336-1.754a1.5 1.5 0 0 0-2.169.4v.001Z"></path>
+  </svg>
+</button>
+<button class="pinterest-button button" style="transition-delay: 0.4s, 0s, 0.4s; transition-property: translate, background, box-shadow;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="30" width="30">
+     <path d="M12.48 2.4a9.6 9.6 0 0 0-3.498 18.543c-.084-.76-.16-1.927.033-2.757.175-.75 1.125-4.772 1.125-4.772s-.287-.575-.287-1.424c0-1.336.774-2.332 1.738-2.332.818 0 1.214.614 1.214 1.352 0 .824-.524 2.055-.795 3.196-.226.955.48 1.735 1.422 1.735 1.706 0 3.018-1.8 3.018-4.397 0-2.298-1.653-3.904-4.01-3.904-2.732 0-4.335 2.048-4.335 4.165 0 .825.318 1.71.714 2.191a.288.288 0 0 1 .067.276c-.073.302-.235.955-.266 1.088-.042.176-.14.213-.322.129-1.2-.558-1.949-2.311-1.949-3.72 0-3.028 2.201-5.808 6.344-5.808 3.33 0 5.918 2.372 5.918 5.544 0 3.308-2.087 5.971-4.981 5.971-.974 0-1.888-.505-2.201-1.103l-.598 2.283c-.217.834-.803 1.879-1.194 2.516A9.6 9.6 0 1 0 12.48 2.4Z"></path>
+  </svg>
+</button>
+<button class="instagram-button button" style="transition-delay: 0.5s, 0s, 0.5s; transition-property: translate, background, box-shadow;">
+  <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M12 2c-2.714 0-3.055.013-4.121.06-1.066.05-1.793.217-2.429.465a4.896 4.896 0 0 0-1.771 1.154A4.909 4.909 0 0 0 2.525 5.45c-.248.635-.416 1.362-.465 2.425C2.013 8.944 2 9.284 2 12.001c0 2.715.013 3.055.06 4.121.05 1.066.217 1.792.465 2.428a4.91 4.91 0 0 0 1.154 1.771 4.88 4.88 0 0 0 1.77 1.154c.637.247 1.362.416 2.427.465 1.068.047 1.408.06 4.124.06 2.716 0 3.055-.012 4.122-.06 1.064-.05 1.793-.218 2.43-.465a4.893 4.893 0 0 0 1.77-1.154 4.91 4.91 0 0 0 1.153-1.771c.246-.636.415-1.363.465-2.428.047-1.066.06-1.406.06-4.122s-.012-3.056-.06-4.124c-.05-1.064-.219-1.791-.465-2.426a4.907 4.907 0 0 0-1.154-1.771 4.888 4.888 0 0 0-1.771-1.154c-.637-.248-1.365-.416-2.429-.465-1.067-.047-1.406-.06-4.123-.06H12Zm-.896 1.803H12c2.67 0 2.987.008 4.04.057.975.044 1.505.208 1.858.344.466.181.8.399 1.15.748.35.35.566.683.747 1.15.138.352.3.882.344 1.857.049 1.053.059 1.37.059 4.039 0 2.668-.01 2.986-.059 4.04-.044.974-.207 1.503-.344 1.856a3.09 3.09 0 0 1-.748 1.149 3.09 3.09 0 0 1-1.15.747c-.35.137-.88.3-1.857.345-1.053.047-1.37.059-4.04.059s-2.987-.011-4.041-.059c-.975-.045-1.504-.208-1.856-.345a3.097 3.097 0 0 1-1.15-.747 3.1 3.1 0 0 1-.75-1.15c-.136-.352-.3-.882-.344-1.857-.047-1.054-.057-1.37-.057-4.041 0-2.67.01-2.985.057-4.039.045-.975.208-1.505.345-1.857.181-.466.399-.8.749-1.15a3.09 3.09 0 0 1 1.15-.748c.352-.137.881-.3 1.856-.345.923-.042 1.28-.055 3.144-.056v.003Zm6.235 1.66a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 6.865a5.136 5.136 0 1 0-.16 10.272A5.136 5.136 0 0 0 12 6.865Zm0 1.801a3.334 3.334 0 1 1 0 6.668 3.334 3.334 0 0 1 0-6.668Z"></path>
+  </svg>
+</button>
+<button class="snapchat-button button" style="transition-delay: 0.6s, 0s, 0.6s; transition-property: translate, background, box-shadow;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="30" width="30">
+     <path d="M21.929 16.407c-.139-.378-.404-.58-.705-.748a1.765 1.765 0 0 0-.154-.08l-.273-.139c-.94-.499-1.674-1.127-2.183-1.872a4.234 4.234 0 0 1-.375-.664c-.043-.125-.04-.195-.01-.259a.424.424 0 0 1 .121-.125l.44-.289a14.1 14.1 0 0 0 .464-.306c.386-.27.656-.558.825-.878a1.745 1.745 0 0 0 .086-1.45c-.256-.672-.891-1.09-1.661-1.09-.206 0-.41.027-.609.082.008-.46-.002-.947-.043-1.424-.146-1.68-.734-2.56-1.347-3.263a5.367 5.367 0 0 0-1.368-1.1C14.204 2.27 13.15 2 11.998 2c-1.15 0-2.2.27-3.131.801-.515.29-.978.663-1.371 1.104-.613.703-1.2 1.584-1.347 3.263-.041.477-.05.965-.045 1.422a2.288 2.288 0 0 0-.608-.081c-.77 0-1.405.418-1.66 1.091a1.747 1.747 0 0 0 .083 1.451c.17.32.44.608.825.877.103.072.263.174.464.307l.424.276c.054.036.1.083.136.138.033.066.034.137-.015.271a4.204 4.204 0 0 1-.369.65c-.497.729-1.21 1.346-2.12 1.84-.481.255-.982.425-1.193 1-.16.435-.055.929.35 1.344.148.156.32.287.51.387a5.54 5.54 0 0 0 1.25.5c.09.023.176.061.253.113.148.13.128.325.324.61.099.147.225.275.37.375.413.286.876.303 1.369.322.444.018.947.038 1.521.225.238.08.486.233.773.41.687.423 1.63 1.003 3.207 1.003s2.525-.583 3.22-1.008c.284-.175.53-.325.761-.401.575-.19 1.079-.21 1.523-.226.491-.019.955-.038 1.369-.323.172-.12.315-.277.42-.46.142-.24.137-.409.27-.525a.783.783 0 0 1 .238-.108 5.552 5.552 0 0 0 1.268-.506c.2-.108.382-.25.536-.42l.005-.006c.38-.406.475-.886.32-1.309Zm-1.401.753c-.855.473-1.424.421-1.866.706-.375.242-.153.763-.425.95-.337.233-1.327-.015-2.607.408-1.056.349-1.73 1.352-3.629 1.352-1.898 0-2.556-1.001-3.63-1.355-1.277-.422-2.27-.175-2.604-.406-.273-.188-.052-.71-.427-.951-.442-.285-1.011-.234-1.865-.704-.545-.3-.236-.488-.055-.575 3.098-1.499 3.592-3.813 3.613-3.985.027-.207.056-.371-.173-.582-.221-.206-1.202-.813-1.475-1.003-.45-.315-.65-.629-.502-1.015.102-.268.351-.369.612-.369.083 0 .166.01.247.028.495.107.975.356 1.252.422a.477.477 0 0 0 .103.014c.147 0 .2-.075.19-.244-.033-.541-.11-1.596-.024-2.582.117-1.355.555-2.028 1.074-2.622.25-.286 1.42-1.525 3.662-1.525 2.24 0 3.415 1.234 3.664 1.52.52.593.957 1.265 1.073 2.622.085.985.012 2.04-.023 2.581-.013.178.042.244.19.244a.442.442 0 0 0 .102-.013c.278-.067.759-.316 1.253-.422a1.14 1.14 0 0 1 .246-.029c.262 0 .511.102.612.369.147.386-.05.7-.5 1.015-.273.19-1.255.797-1.476 1.002-.23.212-.2.375-.174.583.023.175.517 2.489 3.613 3.986.184.091.492.278-.051.58Z"></path>
+  </svg>
+</button>
+<button class="whatsapp-button button" style="transition-delay: 0.7s, 0s, 0.7s; transition-property: translate, background, box-shadow;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="30" width="30">
+     <path d="M19.001 4.908A9.817 9.817 0 0 0 11.992 2C6.534 2 2.085 6.448 2.08 11.908c0 1.748.458 3.45 1.321 4.956L2 22l5.255-1.377a9.916 9.916 0 0 0 4.737 1.206h.005c5.46 0 9.908-4.448 9.913-9.913A9.872 9.872 0 0 0 19 4.908h.001ZM11.992 20.15A8.216 8.216 0 0 1 7.797 19l-.3-.18-3.117.818.833-3.041-.196-.314a8.2 8.2 0 0 1-1.258-4.381c0-4.533 3.696-8.23 8.239-8.23a8.2 8.2 0 0 1 5.825 2.413 8.196 8.196 0 0 1 2.41 5.825c-.006 4.55-3.702 8.24-8.24 8.24Zm4.52-6.167c-.247-.124-1.463-.723-1.692-.808-.228-.08-.394-.123-.556.124-.166.246-.641.808-.784.969-.143.166-.29.185-.537.062-.247-.125-1.045-.385-1.99-1.23-.738-.657-1.232-1.47-1.38-1.716-.142-.247-.013-.38.11-.504.11-.11.247-.29.37-.432.126-.143.167-.248.248-.413.082-.167.043-.31-.018-.433-.063-.124-.557-1.345-.765-1.838-.2-.486-.404-.419-.557-.425-.142-.009-.309-.009-.475-.009a.911.911 0 0 0-.661.31c-.228.247-.864.845-.864 2.067 0 1.22.888 2.395 1.013 2.56.122.167 1.742 2.666 4.229 3.74.587.257 1.05.408 1.41.523.595.19 1.13.162 1.558.1.475-.072 1.464-.6 1.673-1.178.205-.58.205-1.075.142-1.18-.061-.104-.227-.165-.475-.29Z"></path>
+  </svg>
+</button>
+</div>
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+
+        .ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+.ran_buttons {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: fit-content;
+  width: fit-content;
+  transition: 0.3s;
+  border-radius: 50%;
+  margin-top:6%;
+}
+
+.ran_buttons:hover {
+  padding: 60px;
+}
+
+.ran_buttons:hover .button {
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.main-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border: none;
+  background: #e8e8e8;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+  border-radius: 50%;
+  transition: 0.2s;
+  z-index: 100;
+}
+
+.button {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border: none;
+  background: #e8e8e8;
+  box-shadow: 5px 5px 12px rgba(202, 202, 202, 0), -5px -5px 12px rgba(255, 255, 255, 0);
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.discord-button:hover {
+  background: #5865F2;
+}
+
+.ran_buttons:hover .discord-button {
+  translate: 70px 0px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.twitter-button:hover {
+  background: #1CA1F1;
+}
+
+.ran_buttons:hover .twitter-button {
+  translate: 47px -47px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.reddit-button:hover {
+  background: #FF4500;
+}
+
+.ran_buttons:hover .reddit-button {
+  translate: 0px -70px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.messenger-button:hover {
+  background: #0093FF;
+}
+
+.ran_buttons:hover .messenger-button {
+  translate: -47px -47px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.pinterest-button:hover {
+  background: #F0002A;
+}
+
+.ran_buttons:hover .pinterest-button {
+  translate: -70px 0px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.instagram-button:hover {
+  background: #F914AF;
+}
+
+.ran_buttons:hover .instagram-button {
+  translate: -47px 47px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.snapchat-button:hover {
+  background: #FFFC00;
+}
+
+.ran_buttons:hover .snapchat-button {
+  translate: 0px 70px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.whatsapp-button:hover {
+  background: #25D366;
+}
+
+.ran_buttons:hover .whatsapp-button {
+  translate: 47px 47px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">    
+<button class="ran_loader">
+  <div class="ran_loader_bg">
+    <span>Play Now</span>
+  </div>
+  <div class="drops">
+    <div class="drop1"></div>
+    <div class="drop2"></div>
+    <div class="drop3"></div>
+  </div>
+</button>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="liquid">
+      <feGaussianBlur
+        result="blur"
+        stdDeviation="10"
+        in="SourceGraphic"
+      ></feGaussianBlur>
+      <feColorMatrix
+        result="liquid"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+        mode="matrix"
+        in="blur"
+      ></feColorMatrix>
+    </filter>
+  </defs>
+</svg>
+
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+
+.ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow:hidden;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes jump-scare {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9) rotate(-5deg);
+    opacity: 1;
+  }
+}
+
+@keyframes drop {
+  0% {
+    bottom: 0px;
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    bottom: -400px;
+  }
+}
+
+.ran_loader {
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  margin-left: 20%;
+  background-color: transparent;
+  margin-top:10%;
+}
+
+.ran_loader_bg {
+  border-radius: 12px;
+  padding: 10px 15px;
+  z-index: 2;
+  width: 120px;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: black;
+  background-image: radial-gradient(circle 80px at 50% 150%, #2a2a2a, black);
+  margin-bottom: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.ran_loader_bg:hover {
+  text-shadow: 0px 0px 8px #fff;
+  animation: jump-scare 0.2s ease-in-out;
+}
+
+.ran_loader_bg:active {
+  background-image: radial-gradient(circle 140px at 50% 150%, #2a2a2a, black);
+}
+
+.ran_loader_bg:hover + .drops .drop2,
+.drop3 {
+  animation: drop 0.5s cubic-bezier(1, 0.19, 0.66, 0.12) 0.1s infinite;
+}
+
+.ran_loader_bg:active + .drops .drop1,
+.drop2,
+.drop3 {
+  background-color: #fff;
+}
+
+.drops {
+  filter: url("#liquid");
+  position: absolute;
+  top: 35%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+  animation: fade-in 0.3s linear 0.2s forwards;
+}
+
+.drop1,
+.drop2,
+.drop3 {
+  width: 20px;
+  height: 28px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  background-color: black;
+}
+
+.drop1 {
+  width: 125px;
+  height: 16px;
+  bottom: 2px;
+  border-radius: 0;
+}
+
+.drop3 {
+  background-color: white;
+}
+
+.drop2,
+.drop3 {
+  animation: drop 1.5s cubic-bezier(1, 0.19, 0.66, 0.12) 0.7s infinite;
+}
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">    
+<button class="ran_bin_button">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 39 7"
+    class="ran_bin_top"
+  >
+    <line stroke-width="4" stroke="white" y2="5" x2="39" y1="5"></line>
+    <line
+      stroke-width="3"
+      stroke="white"
+      y2="1.5"
+      x2="26.0357"
+      y1="1.5"
+      x1="12"
+    ></line>
+  </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 33 39"
+    class="ran_bin_bottom"
+  >
+    <mask fill="white" id="path-1-inside-1_8_19">
+      <path
+        d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"
+      ></path>
+    </mask>
+    <path
+      mask="url(#path-1-inside-1_8_19)"
+      fill="white"
+      d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z"
+    ></path>
+    <path stroke-width="4" stroke="white" d="M12 6L12 29"></path>
+    <path stroke-width="4" stroke="white" d="M21 6V29"></path>
+  </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 89 80"
+    class="garbage"
+  >
+    <path
+      fill="white"
+      d="M20.5 10.5L37.5 15.5L42.5 11.5L51.5 12.5L68.75 0L72 11.5L79.5 12.5H88.5L87 22L68.75 31.5L75.5066 25L86 26L87 35.5L77.5 48L70.5 49.5L80 50L77.5 71.5L63.5 58.5L53.5 68.5L65.5 70.5L45.5 73L35.5 79.5L28 67L16 63L12 51.5L0 48L16 25L22.5 17L20.5 10.5Z"
+    ></path>
+  </svg>
+</button>
+
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+.ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+}
+.ran_bin_button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #F0D670 0%, #BB891A 70.86%);
+  cursor: pointer;
+  border: 2px solid #fff;
+  transition-duration: 0.3s;
+  position: relative;
+  overflow: hidden;
+  margin-top:10%;
+}
+.ran_bin_bottom {
+  width: 15px;
+  z-index: 2;
+}
+.ran_bin_top {
+  width: 17px;
+  transform-origin: right;
+  transition-duration: 0.3s;
+  z-index: 2;
+}
+.ran_bin_button:hover .bin-top {
+  transform: rotate(45deg);
+}
+.ran_bin_button:hover {
+  background-color: rgb(255, 0, 0);
+}
+.ran_bin_button:active {
+  transform: scale(0.9);
+}
+.garbage {
+  position: absolute;
+  width: 14px;
+  height: auto;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.ran_bin_button:hover .garbage {
+  animation: throw 0.4s linear;
+}
+@keyframes throw {
+  from {
+    transform: translate(-400%, -700%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+}
+    </textarea>
+            <textarea class="js" style="display:none;">
+            There is No JS File
+    </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html">
+    <div class="ran_button_container">
+
+        <button class="ran_delete_btn">
+            <span class="btn-text">
+               <span>D</span><span>e</span><span>l</span><span>e</span><span>t</span><span>e</span>
+            </span>
+            <span class="trash">🗑️</span>
+        </button>
+    </div>
+
+             </textarea>
+            <textarea class="css" style="display:none;">
+        .ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .ran_delete_btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #000;
+            background: linear-gradient(180deg, #F0D670 0%, #BB891A 70.86%);
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            perspective: 500px;
+            margin-top:10%;
+        }
+
+        .ran_delete_btn .btn-text span {
+            display: inline-block;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .ran_delete_btn .trash {
+            display: inline-block;
+            transition: transform 0.5s ease;
+            font-size: 1.4rem;
+        }
+
+        .ran_delete_btn.tilt .trash {
+            transform: rotate(-20deg);
+        }
+            </textarea>
+            <textarea class="js" style="display:none;">
+        const btn = document.querySelector('.ran_delete_btn');
+        const trash = document.querySelector('.ran_delete_btn .trash');
+
+        const originalTextHTML = btn.querySelector('.btn-text').innerHTML;
+
+        btn.addEventListener('click', () => {
+        const letters = document.querySelectorAll('.ran_delete_btn .btn-text span');
+        btn.classList.add('tilt');
+
+        letters.forEach((letter, index) => {
+            setTimeout(() => {
+            const trashRect = trash.getBoundingClientRect();
+            const letterRect = letter.getBoundingClientRect();
+            const deltaX = trashRect.left + trashRect.width/2 - (letterRect.left + letterRect.width/2);
+            const deltaY = trashRect.top + trashRect.height/2 - (letterRect.top + letterRect.height/2);
+            letter.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.3)`;
+            letter.style.opacity = '0';
+
+            if(index === letters.length - 1){
+                setTimeout(() => {
+                btn.classList.remove('tilt');
+                document.querySelector('.btn-text').remove();
+
+                setTimeout(() => {
+                    const span = document.createElement('span');
+                    span.classList.add('btn-text');
+                    span.innerHTML = originalTextHTML;
+                    btn.insertBefore(span, trash);
+                }, 3000);
+
+                        }, 500);
+                }
+                }, index * 150);
+        });
+            });
+             </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+<div class="scene">
+  <div class="cube">
+    <span class="side top">Now</span>
+    <span class="side front">Play</span>
+  </div>
+</div>
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+.ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+}
+
+.scene {
+ width: 10em;
+ justify-content: center;
+ align-items: center;
+ margin-top:12%;
+}
+
+.cube {
+ color: #ccc;
+ cursor: pointer;
+ font-family: 'Roboto', sans-serif;
+ transition: all 0.85s cubic-bezier(.17,.67,.14,.93);
+ transform-style: preserve-3d;
+ transform-origin: 100% 50%;
+ width: 10em;
+ height: 4em;
+}
+
+.cube:hover {
+ transform: rotateX(-90deg);
+}
+
+.side {
+ box-sizing: border-box;
+ position: absolute;
+ display: inline-block;
+ height: 4em;
+ width: 10em;
+ text-align: center;
+ text-transform: uppercase;
+ padding-top: 1.5em;
+ font-weight: bold;
+}
+
+.top {
+ background: #BB891A;
+ color: #222229;
+ transform: rotateX(90deg) translate3d(0, 0, 2em);
+ box-shadow: inset 0 0 0 5px #fff;
+}
+
+.front {
+ background: #222229;
+ color: #fff;
+ box-shadow: inset 0 0 0 5px #fff;
+ transform: translate3d(0, 0, 2em);
+}
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+<div class="ran_search_container flex-center" id="ransearchContainer">
+        <span class="ran_search_icon" id="ransearchIcon">&#128269;</span>
+        <input type="text" class="ran_search_input" placeholder="Search..." id="ransearchInput">
+    </div>
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+                .ran_button_container{
+                     position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+                }
+.ran_search_container{
+    display:flex;
+    background: linear-gradient(180deg, #F0D670 0%, #BB891A 70.86%);
+    box-shadow: -4px -4px 10px #3C3C3C, 5px 5px 5px #111;
+    border-radius: 50px;
+    padding: 5px;
+    width: 50px;
+    transition: width 0.4s ease;
+    overflow: hidden;
+    cursor:poiner;
+    margin-top:12%;
+  }
+
+  .ran_search_container.active {
+    width: 300px;
+  }
+
+ .ran_search_input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    flex: 1;
+    font-size: 1rem;
+    color: #111;
+    display: none;
+  }
+
+  .ran_search_container.active .ran_search_input {
+    display: block;
+  }
+
+  .ran_search_icon{
+    margin-top: 0.5rem !important;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    color: #111;
+  }
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    const searchContainer = document.getElementById('ransearchContainer');
+  const searchIcon = document.getElementById('ransearchIcon');
+  const searchInput = document.getElementById('ransearchInput');
+
+  searchIcon.addEventListener('click', () => {
+    searchContainer.classList.toggle('active');
+    if (searchContainer.classList.contains('active')) {
+      searchInput.focus();
+    }
+  });
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+<ul class="ran_wrapper">
+  <li class="icon facebook">
+    <span class="tooltip">Facebook</span>
+    <svg
+      viewBox="0 0 320 512"
+      height="1.2em"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+      ></path>
+    </svg>
+  </li>
+  <li class="icon twitter">
+    <span class="tooltip">Twitter</span>
+    <svg
+      height="1.8em"
+      fill="currentColor"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+      class="twitter"
+    >
+      <path
+        d="M42,12.429c-1.323,0.586-2.746,0.977-4.247,1.162c1.526-0.906,2.7-2.351,3.251-4.058c-1.428,0.837-3.01,1.452-4.693,1.776C34.967,9.884,33.05,9,30.926,9c-4.08,0-7.387,3.278-7.387,7.32c0,0.572,0.067,1.129,0.193,1.67c-6.138-0.308-11.582-3.226-15.224-7.654c-0.64,1.082-1,2.349-1,3.686c0,2.541,1.301,4.778,3.285,6.096c-1.211-0.037-2.351-0.374-3.349-0.914c0,0.022,0,0.055,0,0.086c0,3.551,2.547,6.508,5.923,7.181c-0.617,0.169-1.269,0.263-1.941,0.263c-0.477,0-0.942-0.054-1.392-0.135c0.94,2.902,3.667,5.023,6.898,5.086c-2.528,1.96-5.712,3.134-9.174,3.134c-0.598,0-1.183-0.034-1.761-0.104C9.268,36.786,13.152,38,17.321,38c13.585,0,21.017-11.156,21.017-20.834c0-0.317-0.01-0.633-0.025-0.945C39.763,15.197,41.013,13.905,42,12.429"
+      ></path>
+    </svg>
+  </li>
+  <li class="icon instagram">
+    <span class="tooltip">Instagram</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="1.2em"
+      fill="currentColor"
+      class="bi bi-instagram"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
+      ></path>
+    </svg>
+  </li>
+</ul>
+
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+
+.ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+}
+
+.ran_wrapper {
+  display: inline-flex;
+  list-style: none;
+  height: 120px;
+  width: 100%;
+  padding-top: 20px;
+  font-family: "Poppins", sans-serif;
+  justify-content: center;
+  margin-top:10%;
+}
+
+.ran_wrapper .icon {
+  position: relative;
+  background: #fff;
+  border-radius: 50%;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.ran_wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #fff;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.ran_wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #fff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.ran_wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.ran_wrapper .icon:hover span,
+.ran_wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.ran_wrapper .facebook:hover,
+.ran_wrapper .facebook:hover .tooltip,
+.ran_wrapper .facebook:hover .tooltip::before {
+  background: #1877f2;
+  color: #fff;
+}
+
+.ran_wrapper .twitter:hover,
+.ran_wrapper .twitter:hover .tooltip,
+.ran_wrapper .twitter:hover .tooltip::before {
+  background: #1da1f2;
+  color: #fff;
+}
+
+.ran_wrapper .instagram:hover,
+.ran_wrapper .instagram:hover .tooltip,
+.ran_wrapper .instagram:hover .tooltip::before {
+  background: #e4405f;
+  color: #fff;
+}
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+    <div class="ran_button_container">
+        <button class="ran_btn ran_btn15">Button</button>
+    </div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+        :root {
+            --btn-width: 8rem;
+            --btn-height: 3rem;
+            --btn-padding: 12px 25px;
+            --btn-radius: 50px;
+            --btn-font-size: 1rem;
+            --btn-transition: 0.3s ease;
+            --btn-text-color: #fff;
+        }
+        .ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .ran_btn {
+            padding: var(--btn-padding);
+            width: var(--btn-width);
+            height: var(--btn-height);
+            font-size: var(--btn-font-size);
+            border: none;
+            border-radius: var(--btn-radius);
+            cursor: pointer;
+            color: var(--btn-text-color);
+            transition: var(--btn-transition);
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+            margin-top:12%;
+        }
+
+        .ran_btn15 {
+            background: linear-gradient(180deg, #F0D670 0%, #BB891A 70.86%);
+                        box-shadow: -4px -4px 10px #3C3C3C, 5px 5px 5px #111;
+        }
+
+            .ran_btn15::before {
+                content: "";
+                position: absolute;
+                top: -100%;
+                left: -100%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(120deg,
+                            rgba(255, 255, 255, 0.6) 0%,
+                            rgba(255, 255, 255, 0) 60%);
+                transform: rotate(25deg);
+                transition: transform 0.8s ease;
+                }
+
+            .ran_btn15:hover::before {
+                transform: translate(100%, 100%) rotate(25deg);
+            }
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+  <button class="ran_Btn">
+  <div class="ran_sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+  <div class="ran_text">Logout</div>
+  </button>
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+.ran_button_container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+.ran_Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgb(5, 65, 65);
+  margin-top:12%;
+}
+
+.ran_sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ran_sign svg {
+  width: 17px;
+}
+
+.ran_sign svg path {
+  fill: white;
+}
+.ran_text {
+  position: absolute;
+  right: -10%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+.ran_Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.ran_Btn:hover .ran_sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+.ran_Btn:hover .ran_text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+.ran_Btn:active {
+  transform: translate(2px ,2px);
+}
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+<button class="ran_btn flex-center ran_btn26"></button>
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+:root {
+    --btn-width: 12rem;
+    --btn-height: 5rem;
+    --btn-padding: 12px 25px;
+    --btn-radius: 50px;
+    --btn-font-size: 1rem;
+    --btn-transition: 0.3s ease;
+    --btn-text-color: #fff;
+    }
+.ran_btn {
+    padding: var(--btn-padding);
+    width: var(--btn-width);
+    height: var(--btn-height);
+    font-size: var(--btn-font-size);
+    border: none;
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    color: var(--btn-text-color);
+    transition: var(--btn-transition);
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    margin-top:12%;
+}
+.ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+}
+
+.ran_btn26 {
+    position: relative;
+    clip-path: polygon(40% 0%, 70% 0%,
+                    50% 40%, 80% 40%,
+                    30% 100%, 60% 60%,20% 60%);
+    background: linear-gradient(180deg, #F0D670 0%, #BB891A 70.86%);
+    box-shadow: -4px -4px 10px #3C3C3C, 5px 5px 5px #111;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s;
+}
+
+.ran_btn26::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,rgba(255, 255, 255, 0.6) 0%,transparent 100%);
+                z-index: 2;
+                pointer-events: none;
+                opacity: 0;
+    }
+
+    .ran_btn26:hover::before {
+                animation: shineDown 0.7s ease forwards;
+                opacity: 1;
+    }
+    @keyframes shineDown {
+                 0% {
+                     top: -100%;
+                    }
+
+                    100% {
+                        top: 100%;
+                        }
+        }
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+    <div class="ran_button_container">
+        <button class="ran_button">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20" fill="none" class="svg-icon"><g stroke-width="1.5" stroke-linecap="round" stroke="#5d41de"><circle r="2.5" cy="10" cx="10"></circle><path fill-rule="evenodd" d="m8.39079 2.80235c.53842-1.51424 2.67991-1.51424 3.21831-.00001.3392.95358 1.4284 1.40477 2.3425.97027 1.4514-.68995 2.9657.82427 2.2758 2.27575-.4345.91407.0166 2.00334.9702 2.34248 1.5143.53842 1.5143 2.67996 0 3.21836-.9536.3391-1.4047 1.4284-.9702 2.3425.6899 1.4514-.8244 2.9656-2.2758 2.2757-.9141-.4345-2.0033.0167-2.3425.9703-.5384 1.5142-2.67989 1.5142-3.21831 0-.33914-.9536-1.4284-1.4048-2.34247-.9703-1.45148.6899-2.96571-.8243-2.27575-2.2757.43449-.9141-.01669-2.0034-.97028-2.3425-1.51422-.5384-1.51422-2.67994.00001-3.21836.95358-.33914 1.40476-1.42841.97027-2.34248-.68996-1.45148.82427-2.9657 2.27575-2.27575.91407.4345 2.00333-.01669 2.34247-.97026z" clip-rule="evenodd"></path></g></svg>
+  <span class="lable">Settings</span>
+</button>
+    </div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+
+        .ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+.ran_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  height: 36px;
+  width: 120px;
+  border: none;
+  background: #5e41de33;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top:14%;
+}
+
+.lable {
+  line-height: 20px;
+  font-size: 17px;
+  color: #5D41DE;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.ran_button:hover {
+  background: #5e41de4d;
+}
+
+.ran_button:hover .svg-icon {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+<button class="ran_btn">
+    <span class="text">Delete</span>
+    <span class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+        </path>
+        </svg>
+    </span>
+</button>
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+
+        .ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+.ran_btn {
+ width: 150px;
+ height: 50px;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ background: red;
+ border: none;
+ border-radius: 5px;
+ box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+ background: #e62222;
+ margin-top:12%;
+}
+
+.ran_btn, .ran_btn span {
+ transition: 200ms;
+}
+
+.ran_btn .text {
+ transform: translateX(35px);
+ color: white;
+ font-weight: bold;
+}
+
+.ran_btn .icon {
+ position: absolute;
+ border-left: 1px solid #c41b1b;
+ transform: translateX(110px);
+ height: 40px;
+ width: 40px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.ran_btn svg {
+ width: 15px;
+ fill: #eee;
+}
+
+.ran_btn:hover {
+ background: #ff3636;
+}
+
+.ran_btn:hover .text {
+ color: transparent;
+}
+
+.ran_btn:hover .icon {
+ width: 150px;
+ border-left: none;
+ transform: translateX(0);
+}
+
+.ran_btn:focus {
+ outline: none;
+}
+
+.ran_btn:active .icon svg {
+ transform: scale(0.8);
+}
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+<button class="ran_pay_btn">
+  <span class="btn-text">Pay Now</span>
+  <div class="icon-container">
+    <svg viewBox="0 0 24 24" class="ran_icon card-icon">
+      <path
+        d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18C2,19.11 2.89,20 4,20H20C21.11,20 22,19.11 22,18V6C22,4.89 21.11,4 20,4Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+    <svg viewBox="0 0 24 24" class="ran_icon payment-icon">
+      <path
+        d="M2,17H22V21H2V17M6.25,7H9V6H6V3H18V6H15V7H17.75L19,17H5L6.25,7M9,10H15V8H9V10M9,13H15V11H9V13Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+    <svg viewBox="0 0 24 24" class="ran_icon dollar-icon">
+      <path
+        d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
+        fill="currentColor"
+      ></path>
+    </svg>
+
+    <svg viewBox="0 0 24 24" class="ran_icon wallet-icon default-icon">
+      <path
+        d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+
+    <svg viewBox="0 0 24 24" class="ran_icon check-icon">
+      <path
+        d="M9,16.17L4.83,12L3.41,13.41L9,19L21,7L19.59,5.59L9,16.17Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  </div>
+</button>
+
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+
+        .ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+.ran_pay_btn {
+  position: relative;
+  padding: 12px 24px;
+  font-size: 16px;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  margin-top:12%;
+}
+
+.ran_pay_btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.icon-container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.ran_icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  color: #22c55e;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.default-icon {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ran_pay_btn:hover .ran_icon {
+  animation: none;
+}
+
+.ran_pay_btn:hover .wallet-icon {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.ran_pay_btn:hover .card-icon {
+  animation: iconRotate 2.5s infinite;
+  animation-delay: 0s;
+}
+
+.ran_pay_btn:hover .payment-icon {
+  animation: iconRotate 2.5s infinite;
+  animation-delay: 0.5s;
+}
+
+.ran_pay_btn:hover .dollar-icon {
+  animation: iconRotate 2.5s infinite;
+  animation-delay: 1s;
+}
+
+.ran_pay_btn:hover .check-icon {
+  animation: iconRotate 2.5s infinite;
+  animation-delay: 1.5s;
+}
+
+.ran_pay_btn:active .ran_icon {
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.ran_pay_btn:active .check-icon {
+  animation: checkmarkAppear 0.6s ease forwards;
+  visibility: visible;
+}
+
+.btn-text {
+  font-weight: 600;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+@keyframes iconRotate {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.5);
+  }
+  5% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+  15% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+  20% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.5);
+  }
+}
+
+@keyframes checkmarkAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+<button id="ran_pay_button" class="ran_pay_btn">
+  <span>PAY</span>
+  <span class="icon">
+    <svg
+      width="40px"
+      height="40px"
+      viewBox="0 0 24 24"
+      fill="#000"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="Interface / Credit_Card_01">
+        <path
+          id="Vector"
+          d="M3 11V15.8002C3 16.9203 3 17.4801 3.21799 17.9079C3.40973 18.2842 3.71547 18.5905 4.0918 18.7822C4.5192 19 5.07899 19 6.19691 19H17.8031C18.921 19 19.48 19 19.9074 18.7822C20.2837 18.5905 20.5905 18.2842 20.7822 17.9079C21 17.4805 21 16.9215 21 15.8036V11M3 11V9M3 11H21M3 9V8.2002C3 7.08009 3 6.51962 3.21799 6.0918C3.40973 5.71547 3.71547 5.40973 4.0918 5.21799C4.51962 5 5.08009 5 6.2002 5H17.8002C18.9203 5 19.4796 5 19.9074 5.21799C20.2837 5.40973 20.5905 5.71547 20.7822 6.0918C21 6.5192 21 7.07899 21 8.19691V9M3 9H21M7 15H11M21 11V9"
+          stroke="#ffff"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </g>
+      </svg>
+    </span>
+  <div id="fingerprint-container">
+    <svg
+      style="width: 100%; height: 100%;"
+      preserveAspectRatio="xMidYMid meet"
+      height="430"
+      width="430"
+      viewBox="0 0 430 430"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g>
+        <g opacity="1" transform="matrix(1, 0, 0, 1, 215, 215)">
+          <path
+            d="M0,167.5 C92.5,167.5 167.5,92.5 167.5,0 C167.5,-92.5 92.5,-167.5 0,-167.5 C-92.5,-167.5 -167.5,-92.5 -167.5,0 C-167.5,92.5 -92.5,167.5 0,167.5z"
+            stroke-width="12"
+            stroke-opacity="1"
+            stroke="rgb(255,255,255)"
+            class="primary"
+            fill-opacity="0"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          ></path>
+        </g>
+        <g opacity="1" transform="matrix(1, 0, 0, 1, 215, 215)">
+          <path
+            d="M0,-30 C0,-30 0,30 0,30 M-30,0 C-30,0 -30,-30 -30,-30 C-30,-46.569000244140625 -16.569000244140625,-60 0,-60 C16.569000244140625,-60 30,-46.569000244140625 30,-30 M30,0 C30,0 30,30 30,30 C30,46.569000244140625 16.569000244140625,60 0,60 C-16.569000244140625,60 -30,46.569000244140625 -30,30 M20,-86.58599853515625 C13.744000434875488,-88.7969970703125 7.013000011444092,-90 0,-90 C-33.137001037597656,-90 -60,-63.137001037597656 -60,-30 C-60,-30 -60,30 -60,30 C-60,47.77000045776367 -52.275001525878906,63.736000061035156 -40,74.72200012207031 M-20,86.58599853515625 C-13.744000434875488,88.7969970703125 -7.013000011444092,90 0,90 C33.137001037597656,90 60,63.137001037597656 60,30 C60,30 60,-30 60,-30 C60,-47.77000045776367 52.275001525878906,-63.736000061035156 40,-74.72200012207031 M-70,-86.572998046875 C-82.50800323486328,-71.11599731445312 -90,-51.43299865722656 -90,-30 C-90,-30 -90,30 -90,30 C-90,79.70600128173828 -49.70600128173828,120 0,120 C18.500999450683594,120 35.69900131225586,114.41799926757812 50,104.84500122070312 M70,86.572998046875 C82.50800323486328,71.11599731445312 90,51.43299865722656 90,30 C90,30 90,-30 90,-30 C90,-79.70600128173828 49.70600128173828,-120 0,-120 C-18.500999450683594,-120 -35.69900131225586,-114.41799926757812 -50,-104.84500122070312"
+            stroke-width="12"
+            stroke-opacity="1"
+            stroke="rgb(255,255,255)"
+            class="secondary"
+            fill-opacity="0"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          ></path>
+        </g>
+
+        <g opacity="1" transform="matrix(1, 0, 0, 1, 215, 215)">
+          <path
+            d="M0,167.5 C92.5,167.5 167.5,92.5 167.5,0 C167.5,-92.5 92.5,-167.5 0,-167.5 C-92.5,-167.5 -167.5,-92.5 -167.5,0 C-167.5,92.5 -92.5,167.5 0,167.5z"
+            stroke-width="12"
+            stroke-opacity="1"
+            stroke="rgb(255,255,255)"
+            class="primary_check"
+            fill-opacity="0"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          ></path>
+        </g>
+
+        <g
+          font-size="50"
+          transform="translate(75, 75) scale(3)"
+          opacity="0"
+          class="checkmark"
+        >
+          <path
+            d="M20,50 L40,70 L70,30"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke-width="20"
+            stroke="rgb(255,255,255)"
+            fill="none"
+          ></path>
+        </g>
+      </g>
+    </svg>
+  </div>
+</button>
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+
+        .ran_button_container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+.ran_pay_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #04264a;
+  gap: 5px;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 12px;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  width: 140px;
+  height: 60px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-top:12%;
+}
+.ran_pay_btn:focus {
+  width: 60px;
+  height: 60px;
+}
+.ran_pay_btn .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  font-size: 10px;
+  width: 35px;
+  height: 35px;
+}
+.ran_pay_btn:hover {
+  background-color: #04376e;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#fingerprint-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.ran_pay_btn:focus span {
+  display: none;
+}
+
+.ran_pay_btn:focus #fingerprint-container {
+  display: flex;
+}
+
+.primary,
+.secondary {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 2000;
+  animation: draw 3s ease-in-out forwards;
+}
+
+.checkmark,
+.primary_check {
+  animation: showCheckmark 1s ease-in-out forwards;
+  animation-delay: 3s;
+  width: 500px;
+  opacity: 0;
+}
+
+.ran_pay_btn:focus #fingerprint-container .checkmark,
+.primary_check {
+  opacity: 0;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+    display: none;
+  }
+}
+
+@keyframes showCheckmark {
+  to {
+    opacity: 1;
+  }
+}
+
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+        <button class="stop-button">
+            <div class="neon-circle">STOP</div>
+        </button>
+        
+        <div class="ripple-container">
+            <div class="ripple-ring ring-1 neon"></div>
+            <div class="ripple-ring ring-2 black"></div>
+            <div class="ripple-ring ring-3 neon"></div>
+            <div class="ripple-ring ring-4 black"></div>
+            <div class="ripple-ring ring-5 neon"></div>
+            <div class="ripple-ring ring-6 black"></div>
+            <div class="ripple-ring ring-7 neon"></div>
+        </div>
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+.ran_button_container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stop-button {
+    width: 65px;
+    height: 110px;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 60px;
+    color: #666;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    transition: all 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+   
+.stop-button:hover {
+    background: linear-gradient(145deg, #F0D670 0%, #BB891A 70.86%);
+    order: none;
+    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.15),   
+                inset 0 -4px 8px rgba(0, 0, 0, 0.35),        
+                0 0 25px rgba(240, 214, 112, 0.6),           
+                0 0 50px rgba(187, 137, 26, 0.4),            
+                0 0 80px rgba(240, 214, 112, 0.25);         
+    color: #fff;
+}
+.circles-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+.neon-circle {
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    color: #666;
+}
+.stop-button:hover .neon-circle {
+    color: #fff;
+     text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+}
+.black-circle {
+    width: 70px;
+    height: 70px;
+    background: #0a0a0a;
+    border: 2px solid #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #444;
+    transition: all 0.5s ease;
+}
+
+.stop-button:hover .black-circle {
+    background: #0a0a0a;
+    border-color: #333;
+    color: #666;
+}
+.ripple-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+}
+
+.ripple-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    opacity: 0;
+    clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
+}
+
+.ripple-ring.neon {
+    border: 4px dotted #BB891A;
+}
+
+.ripple-ring.black {
+    border: 4px dotted #222;    
+}
+
+.ring-1 { width: 100px; height: 100px; }
+.ring-2 { width: 140px; height: 140px; }
+.ring-3 { width: 180px; height: 180px; }
+.ring-4 { width: 220px; height: 220px; }
+.ring-5 { width: 260px; height: 260px; }
+.ring-6 { width: 300px; height: 300px; }
+.ring-7 { width: 340px; height: 340px; }
+
+.stop-button:hover ~ .ripple-container .ring-1 {
+    animation: ringAppear 0.4s ease-out 0.1s forwards;
+}
+.stop-button:hover ~ .ripple-container .ring-2 {
+    animation: ringAppear 0.4s ease-out 0.2s forwards;
+}
+.stop-button:hover ~ .ripple-container .ring-3 {
+    animation: ringAppear 0.4s ease-out 0.3s forwards;
+}
+.stop-button:hover ~ .ripple-container .ring-4 {
+    animation: ringAppear 0.4s ease-out 0.4s forwards;
+}
+.stop-button:hover ~ .ripple-container .ring-5 {
+    animation: ringAppear 0.4s ease-out 0.5s forwards;
+}
+.stop-button:hover ~ .ripple-container .ring-6 {
+    animation: ringAppear 0.4s ease-out 0.6s forwards;
+}
+.stop-button:hover ~ .ripple-container .ring-7 {
+    animation: ringAppear 0.4s ease-out 0.7s forwards;
+}
+
+    @keyframes ringAppear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1);
+            }
+    }
+.instructions {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #888;
+    font-size: 16px;
+    text-align: center;
+}
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <div class="ui-wrapper">
+        <div class="ui-preview">
+            <iframe class="live-preview"></iframe>
+        </div>
+        <button class="show-code-btn">Show Code</button>
+        <div class="code-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="html">HTML</button>
+                <button class="tab-btn" data-tab="css">CSS</button>
+                <button class="tab-btn" data-tab="js">JS</button>
+            </div>
+            <textarea class="html button_name">
+<div class="ran_button_container">
+<div class="ran_body">
+<button class="ran_btn ran_btn_hover">
+  <span class="ran_btn_text">send</span>
+</button>
+</div>
+</div>
+            </textarea>
+            <textarea class="css" style="display:none;">
+
+.ran_button_container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+        
+.ran_body {
+  --transition: all 0.55s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --yellow-bg: transparent linear-gradient(114deg, #F0D670 0%, #BB891A 100%) 0%
+    0% no-repeat padding-box;
+  color: white;
+  margin: 0;
+  margin-top:10%;
+}
+
+.ran_btn {
+  border-radius: 23px;
+  letter-spacing: 0.8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  margin: 20px auto;
+  width: 166px;
+  height: 45px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #dd7d00;
+  background: transparent;
+  margin-top:10%;
+}
+
+.ran_btn::before {
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+  content: "";
+  width: 50%;
+  height: 100%;
+  background: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.ran_btn:hover::before {
+  width: 100%;
+}
+
+.ran_btn.ran_btn_hover {
+  border-radius: 50px;
+  position: relative;
+}
+
+.ran_btn.ran_btn_hover .ran_btn_text {
+  color: white;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+  mix-blend-mode: lighten;
+}
+.ran_btn.ran_btn_hover:hover .ran_btn_text {
+  color: black;
+}
+
+.ran_btn.ran_btn_hover::before {
+  border-radius: 50px;
+  width: 100%;
+  background: conic-gradient(
+    transparent 240deg, #ac633697 240deg,
+    #fff2af6a 300deg, transparent 300deg
+  )
+  100% / 64%
+  no-repeat, var(--yellow-bg);
+}
+
+.ran_btn.ran_btn_hover:hover .ran_btn_text {
+  margin-right: 30px;
+}
+
+.ran_btn.ran_btn_hover:hover::before {
+  background-position: right;
+  border-radius: 23px;
+  width: 25%;
+}
+
+
+            </textarea>
+            <textarea class="js" style="display:none;">
+                    There is No JS File
+            </textarea>
+            <button class="run-code-btn">Run</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll(".ui-wrapper").forEach(wrapper => {
+            const showBtn = wrapper.querySelector(".show-code-btn");
+            const codeSection = wrapper.querySelector(".code-section");
+            const tabBtns = wrapper.querySelectorAll(".tab-btn");
+            const textAreas = wrapper.querySelectorAll("textarea");
+            const previewFrame = wrapper.querySelector(".live-preview");
+            const runBtn = wrapper.querySelector(".run-code-btn");
+
+            showBtn.addEventListener("click", () => {
+                codeSection.style.display = codeSection.style.display === "block" ? "none" : "block";
+            });
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    tabBtns.forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    textAreas.forEach(area => area.style.display = "none");
+                    wrapper.querySelector("." + btn.dataset.tab).style.display = "block";
+                });
+            });
+
+            runBtn.addEventListener("click", () => {
+                const html = wrapper.querySelector(".html").value;
+                const css = `<style>${wrapper.querySelector(".css").value}</style>`;
+                const js = `<script>${wrapper.querySelector(".js").value}<\/script>`;
+                const output = html + css + js;
+                previewFrame.srcdoc = output;
+            });
+
+            runBtn.click();
+        });
+    </script>
+
 </body>
 
 </html>
